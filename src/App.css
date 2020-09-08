@@ -1,38 +1,75 @@
+/**
+* I used flex-box to do the layout 
+* because the layout should be simple and fast to do
+* and flex-box was the perfect tool for that.
+*/
 .App {
+  background-color:rgb(247, 253, 255);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
   text-align: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+form {
+ 
+  background-color: rgb(255,255,255);
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 0.5px rgb(216, 216, 216);
+  padding: 25px;
+  width: 250px;
+
+}
+.information{
+  width: 80vh;
+  padding: 10px;
+  background-color: rgb(255,255,255);
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 0.5px rgb(216, 216, 216);
+}
+.displayWeather{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.displayWeatherItem{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: center;
+  justify-content: center;
+  flex: 1;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.displayMain{
+ display: flex;
+ flex-direction: column;
+ flex-wrap: wrap;
+ background-color: rgba(255,255,255,0.5)
+}
+.displayMain .displayMainInfo{
+  width: 100%;
+  background-color: rgba(214, 247, 247, 0.9);
+  border-radius: 15px 15px 0px 0px;
+}
+.displayMainDetails{
+  display: flex;
+  flex-direction: row; 
+  max-width: 100%;
+  flex-wrap: wrap;
+  flex-basis: 200px;
+}
+.displayMainDetailsItem{
+  border: 1px solid rgb(210, 246, 255);
+  flex:1;
+  flex-direction: column;
+  min-width: 200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
