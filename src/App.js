@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react' 
 /** I'm using axios because fetch is not supported in older browsers */
 import axios from "axios";
-/** In this app i chose not to use styled-components architecture,
+/** In this app i chosed not to use styled-components architecture,
  *  i think that styled-componts is great for animations and a more organized project.
  *  but in this case, where the app is simple i prefer to use just CSS.
 */
 import './App.css';
+/** Using dotenv to store the api key */
+require('dotenv').config();
 
 function App() {
-  //Hooks that holds if we are using the navigator geolocation
+  //Hooks that holds if we are or not using the navigator geolocation
   const [isGeolocationEnable, setIsGeolocationEnable] = useState(false);
   //Hook that holds the location that we should fetch from our weather api
   const [currentLocation, setCurrentLocation] = useState({});
@@ -26,9 +28,9 @@ function App() {
   const [isCountryError, setIsCountryError] = useState(true);
 
   const [isGeralError, setIsGeralError] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
   
 
-  const [isEnabled, setIsEnabled] = useState(false);
   /**
    * I chose to use useEffect to every time 
    * that, with the dependencies of the error hooks, 
@@ -44,6 +46,7 @@ function App() {
     }
   
   }, [isCityError, isStateError, isCountryError]);
+
   /** Variable that manage to see if there is something in the location */
   let isLocalized =  Object.keys(currentLocation).length === 0;
   /**
@@ -92,7 +95,7 @@ function App() {
     setIsGeolocationEnable(false); 
     //if enable hook is true we can do the request
       if(isEnabled){
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=bb4764a9433157d317e12eb7c2407786`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
         .then((res) => {
           setCurrentLocation(res.data);
         })
@@ -121,7 +124,7 @@ function App() {
 
           setIsGeolocationEnable(true); 
 
-          axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=bb4764a9433157d317e12eb7c2407786`)
+          axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             .then((res) => {
               console.log(res.data);
               setCurrentLocation(res.data);
@@ -154,7 +157,9 @@ function App() {
     setIsStateError(true);
     setIsCountryError(true);
   }
-  
+  /**
+   * Function that parse Kelvin to celsius or fahrenheit
+   */
   const parseKelvinTo = (value, type) => {
     /*
     * Here we could use memoization to dont do the calcule to parse Kelvin for Celsius and 
