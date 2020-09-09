@@ -95,7 +95,7 @@ function App() {
     setIsGeolocationEnable(false); 
     //if enable hook is true we can do the request
       if(isEnabled){
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
         .then((res) => {
           setCurrentLocation(res.data);
         })
