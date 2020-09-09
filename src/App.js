@@ -230,7 +230,7 @@ function App() {
 
               <div className="displayMainDetailsItem">
                 <h4>Humity:</h4>
-                <h3>{currentLocation.main.humidity}K</h3>
+                <h3>{currentLocation.main.humidity}%</h3>
               </div>
 
               <div className="displayMainDetailsItem">
